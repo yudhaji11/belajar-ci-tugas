@@ -141,6 +141,11 @@ $("#kelurahan").on('change', function() {
     });
 }); 
 
+$("#layanan").on('change', function() {
+    ongkir = parseInt($(this).val());
+    hitungTotal();
+});  
+
     function hitungTotal() {
         total = ongkir + <?= $total ?>;
 
