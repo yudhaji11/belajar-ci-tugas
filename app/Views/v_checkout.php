@@ -16,15 +16,11 @@
         </div> 
         <div class="col-12">
             <label for="kelurahan" class="form-label">Kelurahan</label>
-            <select class="form-select" id="kelurahan" name="kelurahan">
-                <option value="">Pilih Kelurahan</option>
-            </select>
+            <select class="form-control" id="kelurahan" name="kelurahan" required></select>
         </div>
         <div class="col-12">
             <label for="layanan" class="form-label">Layanan</label>
-            <select class="form-select" id="layanan" name="layanan">
-                <option value="">Pilih Layanan</option>
-            </select>
+            <select class="form-control" id="layanan" name="layanan" required></select>
         </div>
         <div class="col-12">
             <label for="ongkir" class="form-label">Ongkir</label>
@@ -86,10 +82,9 @@
 $(document).ready(function() {
     var ongkir = 0;
     var total = 0; 
-
     hitungTotal();
 
-$('#kelurahan').select2({
+    $('#kelurahan').select2({
     placeholder: 'Ketik nama kelurahan...',
     ajax: {
         url: '<?= base_url('get-location') ?>',
@@ -115,7 +110,6 @@ $('#kelurahan').select2({
     minimumInputLength: 3
 });
 
-
 $("#kelurahan").on('change', function() {
     var id_kelurahan = $(this).val(); 
     $("#layanan").empty();
@@ -139,7 +133,7 @@ $("#kelurahan").on('change', function() {
             hitungTotal(); 
         },
     });
-}); 
+});
 
 $("#layanan").on('change', function() {
     ongkir = parseInt($(this).val());

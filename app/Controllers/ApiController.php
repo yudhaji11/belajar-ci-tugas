@@ -47,17 +47,24 @@ public function index()
             $penjualan = $this->transaction->findAll();
             
             foreach ($penjualan as &$pj) {
-                $pj['details'] = $this->transaction_detail->where('transaction_id', $pj['id'])->findAll();
+                $details = $this->transaction_detail->where('transaction_id', $pj['id'])->findAll();
+                $pj['details'] = $details;
+
+                // Hitung total jumlah
+                $pj['jumlah'] = 0;
+                foreach ($details as $d) {
+                    $pj['jumlah'] += $d['jumlah']; // <- GUNAKAN 'jumlah'
+                }
             }
 
             $data['status'] = ["code" => 200, "description" => "OK"];
             $data['results'] = $penjualan;
-
         }
-    } 
+    }
 
     return $this->respond($data);
 }
+
 
     /**
      * Return the properties of a resource object.

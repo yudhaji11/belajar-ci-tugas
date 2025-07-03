@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Controllers;
-
 use App\Models\ProductModel;
 use Dompdf\Dompdf;
 
@@ -12,13 +11,15 @@ class ProdukController extends BaseController
     function __construct()
     {
         $this->product = new ProductModel();
-    }
-
+    } 
+  
+    
     public function index()
     {
         $product = $this->product->findAll();
         $data['product'] = $product;
 
+        $data['menu_aktif'] = 'produk';
         return view('v_produk', $data);
     }
 
@@ -42,9 +43,9 @@ class ProdukController extends BaseController
         $this->product->insert($dataForm);
 
         return redirect('produk')->with('success', 'Data Berhasil Ditambah');
-    }
-    
-    public function edit($id)
+    } 
+
+        public function edit($id)
     {
         $dataProduk = $this->product->find($id);
 
@@ -88,29 +89,29 @@ class ProdukController extends BaseController
     }
 
     public function download()
-    {
-            //get data from database
-        $product = $this->product->findAll();
+{
+		//get data from database
+    $product = $this->product->findAll();
 
-            //pass data to file view
-        $html = view('v_produkPDF', ['product' => $product]);
+		//pass data to file view
+    $html = view('v_produkPDF', ['product' => $product]);
 
-            //set the pdf filename
-        $filename = date('y-m-d-H-i-s') . '-produk';
+		//set the pdf filename
+    $filename = date('y-m-d-H-i-s') . '-produk';
 
-        // instantiate and use the dompdf class
-        $dompdf = new Dompdf();
+    // instantiate and use the dompdf class
+    $dompdf = new Dompdf();
 
-        // load HTML content (file view)
-        $dompdf->loadHtml($html);
+    // load HTML content (file view)
+    $dompdf->loadHtml($html);
 
-        // (optional) setup the paper size and orientation
-        $dompdf->setPaper('A4', 'potrait');
+    // (optional) setup the paper size and orientation
+    $dompdf->setPaper('A4', 'potrait');
 
-        // render html as PDF
-        $dompdf->render();
+    // render html as PDF
+    $dompdf->render();
 
-        // output the generated pdf
-        $dompdf->stream($filename);
-    }
+    // output the generated pdf
+    $dompdf->stream($filename);
+}
 }

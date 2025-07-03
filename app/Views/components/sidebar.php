@@ -1,60 +1,66 @@
-<!-- ======= Sidebar ======= -->
-<aside id="sidebar" class="sidebar">
+<nav id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link <?php echo (uri_string() == '') ? "" : "collapsed" ?>" href=".">
+            <a class="nav-link <?= (!isset($menu_aktif) || $menu_aktif == 'dashboard') ? '' : 'collapsed' ?>" href="<?= base_url('/') ?>">
                 <i class="bi bi-grid"></i>
-                <span>Home</span>
+                <span>Dashboard</span>
             </a>
-        </li><!-- End Home Nav -->
+        </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
-            <a class="nav-link <?php echo (uri_string() == 'keranjang') ? "" : "collapsed" ?>" href="keranjang">
-                <i class="bi bi-cart-check"></i>
+            <a class="nav-link <?= (isset($menu_aktif) && $menu_aktif == 'keranjang') ? '' : 'collapsed' ?>" href="<?= base_url('keranjang') ?>">
+                <i class="bi bi-cart-fill"></i>
                 <span>Keranjang</span>
             </a>
-        </li><!-- End Keranjang Nav -->
-        <?php
-        if (session()->get('role') == 'admin') {
-        ?>
-            <li class="nav-item">
-                <a class="nav-link <?php echo (uri_string() == 'produk') ? "" : "collapsed" ?>" href="produk">
-                    <i class="bi bi-receipt"></i>
-                    <span>Produk</span>
-                </a>
-            </li><!-- End Produk Nav -->
-            <li class="nav-item">
-                <a class="nav-link <?php echo (uri_string() == 'product_category') ? "" : "collapsed" ?>" href="product_category">
-                    <i class="bi bi-receipt"></i>
-                    <span>Produk Category</span>
-                </a>
-            </li>
-        <?php
-        }
-        ?>
+        </li>
 
         <li class="nav-item">
-            <a class="nav-link <?php echo (uri_string() == 'profile') ? "" : "collapsed" ?>" href="profile">
+            <a class="nav-link <?= (isset($menu_aktif) && $menu_aktif == 'profile') ? '' : 'collapsed' ?>" href="<?= base_url('profile') ?>">
                 <i class="bi bi-person"></i>
                 <span>Profile</span>
             </a>
-        </li> <!-- End Profile Nav -->
+        </li>
 
         <li class="nav-item">
-            <a class="nav-link <?php echo (uri_string() == 'faq') ? "" : "collapsed" ?>" href="faq">
+            <a class="nav-link <?= (isset($menu_aktif) && $menu_aktif == 'produk') ? '' : 'collapsed' ?>" href="<?= base_url('produk') ?>">
+                <i class="bi bi-box-seam-fill"></i>
+                <span>Produk</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link <?= (isset($menu_aktif) && $menu_aktif == 'produkkategori') ? '' : 'collapsed' ?>" href="<?= base_url('produkkategori') ?>">
+                <i class="bi bi-bookmark-fill"></i>
+                <span>Produk Kategori</span>
+            </a>
+        </li>
+
+        <?php if (session()->get('role') == 'admin') : ?>
+        <li class="nav-item">
+            <a class="nav-link <?= (isset($menu_aktif) && $menu_aktif == 'diskon') ? '' : 'collapsed' ?>" href="<?= base_url('admin/diskon') ?>">
+                <i class="bi bi-tags-fill"></i>
+                <span>Diskon</span>
+            </a>
+        </li>
+        <?php endif; ?>
+        
+
+        <li class="nav-item">
+            <a class="nav-link <?= (isset($menu_aktif) && $menu_aktif == 'faq') ? '' : 'collapsed' ?>" href="<?= base_url('faq') ?>">
                 <i class="bi bi-question-circle"></i>
                 <span>FAQ</span>
             </a>
-        </li><!--End FAQ Nav -->
+        </li>
 
         <li class="nav-item">
-            <a class="nav-link <?php echo (uri_string() == 'contact') ? "" : "collapsed" ?>" href="contact">
+            <a class="nav-link <?= (isset($menu_aktif) && $menu_aktif == 'contact') ? '' : 'collapsed' ?>" href="<?= base_url('contact') ?>">
                 <i class="bi bi-envelope"></i>
                 <span>Contact</span>
             </a>
-        </li><!-- End Contact Nav -->
+        </li>
+
     </ul>
 
-</aside><!-- End Sidebar-->
+        </nav><!-- End Sidebar-->

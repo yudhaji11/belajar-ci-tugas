@@ -1,5 +1,6 @@
 <?= $this->extend('layout') ?>
 <?= $this->section('content') ?> 
+
 <?php
 if (session()->getFlashData('success')) {
 ?>
@@ -23,9 +24,11 @@ if (session()->getFlashData('failed')) {
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
     Tambah Data
 </button>
-<a type="button" class="btn btn-success" href="<?= base_url() ?> produk/download">
+
+<a type="button" class="btn btn-success" href="<?= base_url('produk/download') ?>">
     Download Data
 </a>
+
 <!-- Table with stripped rows -->
 <table class="table datatable">
     <thead>
@@ -59,7 +62,8 @@ if (session()->getFlashData('failed')) {
                     </a>
                 </td>
             </tr>
-            <!-- Edit Modal Begin -->
+
+             <!-- Edit Modal Begin -->
             <div class="modal fade" id="editModal-<?= $produk['id'] ?>" tabindex="-1">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
@@ -102,12 +106,13 @@ if (session()->getFlashData('failed')) {
                     </div>
                 </div>
             </div>
-            <!-- Edit Modal End -->
+           <!-- Edit Modal End -->
         <?php endforeach ?>
     </tbody>
 </table>
-<!-- End Table with stripped rows -->
- <!-- Add Modal Begin -->
+<!-- End Table with stripped rows --> 
+
+<!-- Add Modal Begin -->
 <div class="modal fade" id="addModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
